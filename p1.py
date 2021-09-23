@@ -15,7 +15,7 @@ data = data.dropna()
 data["Positive"] = [sentiments.polarity_scores(i)["pos"] for i in data["Text"]]
 data["Negative"] = [sentiments.polarity_scores(i)["neg"] for i in data["Text"]]
 data["Neutral"] = [sentiments.polarity_scores(i)["neu"] for i in data["Text"]]
-#print(data.head())
+print(data.head())
 
 x = sum(data["Positive"])
 y = sum(data["Negative"])
