@@ -1,3 +1,4 @@
+from numpy import negative
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -20,6 +21,15 @@ data["Neutral"] = [sentiments.polarity_scores(i)["neu"] for i in data["Text"]]
 x = sum(data["Positive"])
 y = sum(data["Negative"])
 z = sum(data["Neutral"])
+
+def get_sentiment(pos, neg, neu):
+    scores_dict = {pos: "Positive", neg: "Negative", neu: "Neutral"}
+    sentiment = pos #model seems to overvalue neutrality
+    if pos + neg < neu:
+        sentiment = neu
+    if sentiment < neg:
+        sentiment = neg
+    return scores_dict[sentiment]
 
 #def sentiment_score(a, b, c):
 #    if (a>b) and (a>c):
